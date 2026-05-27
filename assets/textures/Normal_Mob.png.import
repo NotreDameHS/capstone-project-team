@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgn4f761kehen"
-path="res://.godot/imported/Fast_Mob.png-652689b29bbee41d8efa57f23991a686.ctex"
+uid="uid://l7k8ebfq1xem"
+path="res://.godot/imported/Normal_Mob.png-30da1ea8dd77c9c8983df99e9dbf9e99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/Fast_Mob.png"
-dest_files=["res://.godot/imported/Fast_Mob.png-652689b29bbee41d8efa57f23991a686.ctex"]
+source_file="res://assets/textures/Normal_Mob.png"
+dest_files=["res://.godot/imported/Normal_Mob.png-30da1ea8dd77c9c8983df99e9dbf9e99.ctex"]
 
 [params]
 

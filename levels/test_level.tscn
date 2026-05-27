@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cyossp82xwkms" path="res://entities/player/player.tscn" id="1_x25rp"]
 [ext_resource type="PackedScene" uid="uid://cxtphgk8y75sf" path="res://entities/collectibles/health_pack.tscn" id="2_gmgay"]
+[ext_resource type="PackedScene" uid="uid://cfw8kc75togos" path="res://entities/mobs/base_mob.tscn" id="3_gmgay"]
 
 [node name="TestLevel" type="Node2D" unique_id=925357313]
 
@@ -9,3 +10,6 @@
 
 [node name="HealthPack" parent="." unique_id=68052092 instance=ExtResource("2_gmgay")]
 position = Vector2(287, 312)
+
+[node name="BaseMob" parent="." unique_id=1375202296 instance=ExtResource("3_gmgay")]
+position = Vector2(821, 310)
