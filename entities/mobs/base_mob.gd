@@ -5,6 +5,7 @@ class_name Mob extends Area2D
 @export var speed := 100.0
 @export var damage = 10
 @export var search_radius := 100.0
+@export var turning_speed := 4.0
 
 var target: Mob = null
 
@@ -17,7 +18,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if target == null or not is_instance_valid(target):
 		find_player()
-	
+		
+	if target != null:
+		var target_angle = (target.global_position - global_position).angle()
+		rotation = lerp_angle(rotation, target_angle, turning_speed * delta)
+		
 	position += transform.x * speed * delta
 	
 
