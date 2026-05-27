@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cfw8kc75togos"]
+
+[ext_resource type="Script" uid="uid://v5m1itlgyjq4" path="res://entities/mobs/base_mob.gd" id="1_esahr"]
+[ext_resource type="Texture2D" uid="uid://l7k8ebfq1xem" path="res://assets/textures/Normal_Mob.png" id="1_iun73"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_esahr"]
+radius = 179.0
+height = 358.0
+
+[node name="BaseMob" type="Area2D" unique_id=1375202296]
+script = ExtResource("1_esahr")
+max_health = null
+speed = null
+damage = null
+search_radius = null
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1804785825]
+position = Vector2(-2.500001, 3.0249915)
+scale = Vector2(1, 0.49321914)
+texture = ExtResource("1_iun73")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1356172137]
+position = Vector2(-2, 20)
+shape = SubResource("CapsuleShape2D_esahr")
