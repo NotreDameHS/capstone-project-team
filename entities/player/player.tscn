@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cyossp82xwkms"]
+
+[ext_resource type="Texture2D" uid="uid://5qb3tp6af2dh" path="res://assets/textures/Player.png" id="1_symyc"]
+[ext_resource type="Script" uid="uid://crio7mo1dmqmd" path="res://entities/player/player.gd" id="2_abrql"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_abrql"]
+radius = 124.0
+height = 322.0
+
+[node name="Player" type="Area2D" unique_id=2054215807]
+script = ExtResource("2_abrql")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=183199497]
+texture = ExtResource("1_symyc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=715891885]
+position = Vector2(-1, 8)
+shape = SubResource("CapsuleShape2D_abrql")

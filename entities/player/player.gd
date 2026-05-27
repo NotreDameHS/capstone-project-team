@@ -1,0 +1,27 @@
+extends Area2D  
+class_name Player
+
+var max_speed := 800
+var velocity = Vector2(0,0)
+var steering_factor := 10.0
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	var direction := Vector2(0,0)
+	direction.x = Input.get_axis("move_left", "move_right")
+	direction.y = Input.get_axis("move_up", "move_down")
+	
+	if direction.length() > 1.0:
+		direction = direction.normalized()
+		
+	var desired_velocity := direction * max_speed
+	var steering_vector = desired_velocity - velocity
+	velocity += steering_factor * steering_vector * delta
+	
+	position += velocity * delta
+	pass

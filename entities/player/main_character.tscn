@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://cyossp82xwkms"]
-
-[node name="Main Character" type="Sprite2D" unique_id=71230115]
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=478859345]
