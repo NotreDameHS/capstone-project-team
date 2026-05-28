@@ -5,8 +5,11 @@ var max_speed := 800
 var velocity = Vector2(0,0)
 var steering_factor := 10.0
 
+var health := 10
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	set_health(health)
 	pass # Replace with function body.
 
 
@@ -26,3 +29,15 @@ func _process(delta: float) -> void:
 	
 	position += velocity * delta
 	pass
+	
+func set_health(new_health: int) -> void:
+	health = new_health
+	get_node("UI/HealthBar").value = health
+	
+
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("HealthPack"):
+		set_health(health + 10)
+	pass # Replace with function body.

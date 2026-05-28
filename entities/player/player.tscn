@@ -7,6 +7,13 @@
 radius = 124.0
 height = 322.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abrql"]
+bg_color = Color(1.540184e-06, 0.95405155, 0.41354704, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [node name="Player" type="Area2D" unique_id=2054215807]
 script = ExtResource("2_abrql")
 
@@ -16,3 +23,21 @@ texture = ExtResource("1_symyc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=715891885]
 position = Vector2(-1, 8)
 shape = SubResource("CapsuleShape2D_abrql")
+
+[node name="UI" type="Control" parent="." unique_id=1085529247]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="ProgressBar" parent="UI" unique_id=1082026495]
+layout_mode = 0
+offset_left = -99.0
+offset_top = -192.0
+offset_right = 102.0
+offset_bottom = -165.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_abrql")
+value = 50.0
+show_percentage = false
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
