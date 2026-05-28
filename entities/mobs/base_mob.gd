@@ -14,29 +14,32 @@ func _ready() -> void:
 	health = max_health
 	add_to_group("mobs")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if target == null or not is_instance_valid(target):
 		find_player()
-		
-	if target != null:
-		var target_angle = (target.global_position - global_position).angle()
-		rotation = lerp_angle(rotation, target_angle, turning_speed * delta)
-		
-	position += transform.x * speed * delta
-	
 
-func find_player()-> void:
-	var closest_Player = null
+	if target != null:
+		var direction = (target.global_position - global_position).normalized()
+		var target_angle = direction.angle()
+		rotation = lerp_angle(rotation, target_angle, turning_speed * delta)
+		position += direction * speed * delta  # move TOWARD target directly
+
+func find_player() -> void:
+	var closest_player = null
 	var shortest_dist = search_radius
 	
+	print("searching... nodes in Player group: ", get_tree().get_nodes_in_group("Player").size())
+	
 	for node in get_tree().get_nodes_in_group("Player"):
-			if node is Player:
-				var dist = global_position.distance_to(node.global_position)
-				if dist < shortest_dist:
-					shortest_dist = dist
-					closest_Player = node
-	target = closest_Player
+
+		var dist = global_position.distance_to(node.global_position)
+
+		if dist < shortest_dist:
+			shortest_dist = dist
+			closest_player = node
+
+	target = closest_player
+	
 	
 func take_damage(amount: float):
 	health -= amount
