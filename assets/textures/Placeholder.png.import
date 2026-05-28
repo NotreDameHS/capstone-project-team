@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgn4f761kehen"
-path="res://.godot/imported/Fast_mob.png-9593c162d67c5b5fa234f7af073eb691.ctex"
+uid="uid://dx6g185pk5g3l"
+path="res://.godot/imported/Placeholder.png-dd776c0d7c034da46ea424e768c5920f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/Fast_mob.png"
-dest_files=["res://.godot/imported/Fast_mob.png-9593c162d67c5b5fa234f7af073eb691.ctex"]
+source_file="res://assets/textures/Placeholder.png"
+dest_files=["res://.godot/imported/Placeholder.png-dd776c0d7c034da46ea424e768c5920f.ctex"]
 
 [params]
 

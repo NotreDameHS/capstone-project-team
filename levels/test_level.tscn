@@ -1,15 +1,32 @@
 [gd_scene format=3 uid="uid://dtvbvrwd8fkal"]
 
+[ext_resource type="Texture2D" uid="uid://dx6g185pk5g3l" path="res://assets/textures/Placeholder.png" id="1_e7anx"]
 [ext_resource type="PackedScene" uid="uid://cyossp82xwkms" path="res://entities/player/player.tscn" id="1_x25rp"]
 [ext_resource type="PackedScene" uid="uid://cxtphgk8y75sf" path="res://entities/collectibles/health_pack.tscn" id="2_gmgay"]
-[ext_resource type="PackedScene" uid="uid://cfw8kc75togos" path="res://entities/mobs/base_mob.tscn" id="3_gmgay"]
+[ext_resource type="PackedScene" uid="uid://dlniup0a6ipyq" path="res://entities/mobs/fast_mob.tscn" id="3_o6mel"]
+[ext_resource type="PackedScene" uid="uid://bj1cvxywqlk4q" path="res://entities/mobs/tank_mob.tscn" id="4_e7anx"]
+[ext_resource type="PackedScene" uid="uid://co7t1f2r8vtoa" path="res://entities/mobs/standard_mob.tscn" id="5_ur00s"]
 
 [node name="TestLevel" type="Node2D" unique_id=925357313]
 
+[node name="Placeholder" type="Sprite2D" parent="." unique_id=1061031368]
+position = Vector2(1, -1)
+scale = Vector2(10, 10)
+texture = ExtResource("1_e7anx")
+
 [node name="Player" parent="." unique_id=2054215807 instance=ExtResource("1_x25rp")]
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=998784575]
+zoom = Vector2(0.2, 0.2)
 
 [node name="HealthPack" parent="." unique_id=68052092 instance=ExtResource("2_gmgay")]
 position = Vector2(287, 312)
 
-[node name="BaseMob" parent="." unique_id=1375202296 instance=ExtResource("3_gmgay")]
-position = Vector2(821, 310)
+[node name="Fast Mob" parent="." unique_id=1375202296 instance=ExtResource("3_o6mel")]
+position = Vector2(890, 361)
+
+[node name="Tank Mob" parent="." unique_id=1929100219 instance=ExtResource("4_e7anx")]
+position = Vector2(286, 709)
+
+[node name="StandardMob" parent="." unique_id=644377924 instance=ExtResource("5_ur00s")]
+position = Vector2(594, 561)

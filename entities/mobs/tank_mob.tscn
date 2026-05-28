@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bj1cvxywqlk4q"]
+
+[ext_resource type="PackedScene" uid="uid://cfw8kc75togos" path="res://entities/mobs/base_mob.tscn" id="1_y3ysa"]
+[ext_resource type="Texture2D" uid="uid://6x0e68sy76b7" path="res://assets/textures/Tank_Mob.png" id="2_yx6xk"]
+
+[node name="Tank Mob" unique_id=1375202296 instance=ExtResource("1_y3ysa")]
+max_health = 200
+speed = 250
+
+[node name="Sprite2D" parent="." index="0" unique_id=1804785825]
+texture = ExtResource("2_yx6xk")

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://co7t1f2r8vtoa"]
+
+[ext_resource type="PackedScene" uid="uid://cfw8kc75togos" path="res://entities/mobs/base_mob.tscn" id="1_rfat3"]
+[ext_resource type="Texture2D" uid="uid://l7k8ebfq1xem" path="res://assets/textures/Normal_Mob.png" id="2_p7u6f"]
+
+[node name="StandardMob" unique_id=1375202296 instance=ExtResource("1_rfat3")]
+speed = 400
+
+[node name="Sprite2D" parent="." index="0" unique_id=1804785825]
+texture = ExtResource("2_p7u6f")
