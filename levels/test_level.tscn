@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://dx6g185pk5g3l" path="res://assets/textures/Placeholder.png" id="1_e7anx"]
 [ext_resource type="PackedScene" uid="uid://cyossp82xwkms" path="res://entities/player/player.tscn" id="1_x25rp"]
 [ext_resource type="PackedScene" uid="uid://cxtphgk8y75sf" path="res://entities/collectibles/health_pack.tscn" id="2_gmgay"]
-[ext_resource type="PackedScene" uid="uid://dlniup0a6ipyq" path="res://entities/mobs/fast_mob.tscn" id="3_o6mel"]
-[ext_resource type="PackedScene" uid="uid://bj1cvxywqlk4q" path="res://entities/mobs/tank_mob.tscn" id="4_e7anx"]
-[ext_resource type="PackedScene" uid="uid://co7t1f2r8vtoa" path="res://entities/mobs/standard_mob.tscn" id="5_ur00s"]
+[ext_resource type="PackedScene" uid="uid://dgilgaue38n3q" path="res://entities/mobs/fast_mob.tscn" id="3_o6mel"]
+[ext_resource type="PackedScene" uid="uid://dn6cr8xxxkhan" path="res://entities/mobs/tank_mob.tscn" id="4_e7anx"]
+[ext_resource type="PackedScene" uid="uid://bmdu87rqeqehq" path="res://entities/mobs/standard_mob.tscn" id="5_ur00s"]
 
 [node name="TestLevel" type="Node2D" unique_id=925357313]
 
@@ -24,9 +24,12 @@ position = Vector2(287, 312)
 
 [node name="Fast Mob" parent="." unique_id=1375202296 instance=ExtResource("3_o6mel")]
 position = Vector2(890, 361)
+collision_layer = 1
 
 [node name="Tank Mob" parent="." unique_id=1929100219 instance=ExtResource("4_e7anx")]
 position = Vector2(286, 709)
+collision_layer = 1
 
 [node name="StandardMob" parent="." unique_id=644377924 instance=ExtResource("5_ur00s")]
 position = Vector2(594, 561)
+collision_layer = 1

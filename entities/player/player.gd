@@ -4,12 +4,12 @@ class_name Player
 var max_speed := 800
 var velocity = Vector2(0,0)
 var steering_factor := 10.0
-
-var health := 10
+var max_health := 100
+var health := 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	set_health(health)
+	set_health(max_health)
 	pass # Replace with function body.
 
 
@@ -34,10 +34,19 @@ func set_health(new_health: int) -> void:
 	health = new_health
 	get_node("UI/HealthBar").value = health
 	
-
+func player_take_damage(damage: int) -> void:
+	set_health(health - damage)
 
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("HealthPack"):
-		set_health(health + 10)
+		if health >= max_health:
+			return
+		else:
+			set_health(health + 10)
+			area.queue_free()
+			print("Healing")
+			
+	if area.is_in_group("mobs"):
+		player_take_damage(10)
 	pass # Replace with function body.

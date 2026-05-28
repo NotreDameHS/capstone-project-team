@@ -8,6 +8,7 @@ radius = 203.0
 height = 508.0
 
 [node name="BaseMob" type="Area2D" unique_id=1375202296]
+collision_layer = 4
 script = ExtResource("1_esahr")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1804785825]

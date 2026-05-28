@@ -12,5 +12,7 @@ func _process(delta: float) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	queue_free()
-	pass # Replace with function body.
+	if area.is_in_group("Player"):
+		print("Area entered by player")
+	else:
+		pass # Replace with function body.
