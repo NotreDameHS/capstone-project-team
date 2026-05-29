@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://bgn4f761kehen" path="res://assets/textures/Fast_Mob.png" id="2_4l8r5"]
 
 [node name="Fast Mob" unique_id=1375202296 instance=ExtResource("1_wpuqo")]
-collision_layer = 4
 max_health = 50
 speed = 550
 

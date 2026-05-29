@@ -10,12 +10,13 @@ var health := 100
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_health(max_health)
+	add_to_group("Player")
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	add_to_group("Player")
+
 	var direction := Vector2(0,0)
 	direction.x = Input.get_axis("move_left", "move_right")
 	direction.y = Input.get_axis("move_up", "move_down")
@@ -31,20 +32,25 @@ func _process(delta: float) -> void:
 	pass
 	
 func set_health(new_health: int) -> void:
+	print("Original health: ", health)
 	health = new_health
+	print("New health: ", health)
 	get_node("UI/HealthBar").value = health
 	
 func player_take_damage(damage: int) -> void:
 	set_health(health - damage)
+	
 
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("HealthPack"):
+		print("Players current health: ", health)
+		print("Max hp allowed: ", max_health)
 		if health >= max_health:
 			return
 		else:
 			set_health(health + 10)
-			area.queue_free()
+			#area.queue_free()
 			print("Healing")
 			
 	if area.is_in_group("mobs"):

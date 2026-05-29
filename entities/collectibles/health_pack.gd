@@ -3,6 +3,8 @@ extends Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	add_to_group("HealthPack")
+	print("Added to group")
 	pass # Replace with function body.
 
 
@@ -12,7 +14,4 @@ func _process(delta: float) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Player"):
-		print("Area entered by player")
-	else:
-		pass # Replace with function body.
+	queue_free()

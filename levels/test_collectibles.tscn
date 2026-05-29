@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dniwom5acq3fd"]
+
+[ext_resource type="PackedScene" uid="uid://cyossp82xwkms" path="res://entities/player/player.tscn" id="1_v4e8h"]
+[ext_resource type="PackedScene" uid="uid://cxtphgk8y75sf" path="res://entities/collectibles/health_pack.tscn" id="2_a4nxj"]
+
+[node name="TestCollectibles" type="Node2D" unique_id=282770797]
+
+[node name="Player" parent="." unique_id=2054215807 instance=ExtResource("1_v4e8h")]
+
+[node name="HealthPack" parent="." unique_id=68052092 instance=ExtResource("2_a4nxj")]
+position = Vector2(436, 325)
+
+[node name="HealthPack2" parent="." unique_id=1601651334 instance=ExtResource("2_a4nxj")]
+position = Vector2(484, 473)
+
+[node name="HealthPack3" parent="." unique_id=1753556499 instance=ExtResource("2_a4nxj")]
+position = Vector2(641, 317)
