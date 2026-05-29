@@ -1,11 +1,15 @@
 [gd_scene format=3 uid="uid://dgilgaue38n3q"]
 
 [ext_resource type="PackedScene" uid="uid://cfw8kc75togos" path="res://entities/mobs/base_mob.tscn" id="1_wpuqo"]
-[ext_resource type="Texture2D" uid="uid://bgn4f761kehen" path="res://assets/textures/Fast_Mob.png" id="2_4l8r5"]
+[ext_resource type="Texture2D" uid="uid://bgn4f761kehen" path="res://assets/textures/Fast_mob.png" id="2_4l8r5"]
 
 [node name="Fast Mob" unique_id=1375202296 instance=ExtResource("1_wpuqo")]
 max_health = 50
 speed = 550
+damage = 5
 
 [node name="Sprite2D" parent="." index="0" unique_id=1804785825]
 texture = ExtResource("2_4l8r5")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1356172137]
+light_mask = 4

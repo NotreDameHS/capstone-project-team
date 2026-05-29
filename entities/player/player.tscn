@@ -18,6 +18,8 @@ corner_radius_bottom_left = 4
 collision_mask = 6
 script = ExtResource("2_abrql")
 
+[node name="Timer" type="Timer" parent="." unique_id=1848553408]
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=183199497]
 texture = ExtResource("1_symyc")
 
@@ -42,3 +44,4 @@ value = 50.0
 show_percentage = false
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

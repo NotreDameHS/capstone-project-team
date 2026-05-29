@@ -49,4 +49,9 @@ func take_damage(amount: float):
 func deal_damage(amount: float):
 	pass
 	
+#func _on_area_entered(area: Area2D):
+	#if area is Player:
+		#area.player_take_damage(damage)
+		#print("Player took "+damage+" damage")
+	#print("Passed func")
 	

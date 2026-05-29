@@ -4,8 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://l7k8ebfq1xem" path="res://assets/textures/Normal_Mob.png" id="2_p7u6f"]
 
 [node name="StandardMob" unique_id=1375202296 instance=ExtResource("1_rfat3")]
-collision_layer = 4
 speed = 400
 
 [node name="Sprite2D" parent="." index="0" unique_id=1804785825]
 texture = ExtResource("2_p7u6f")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1356172137]
+light_mask = 4

@@ -7,6 +7,7 @@ var steering_factor := 10.0
 var max_health := 100
 var health := 100
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_health(max_health)
@@ -52,7 +53,14 @@ func _on_area_entered(area: Area2D) -> void:
 			set_health(health + 10)
 			#area.queue_free()
 			print("Healing")
+
+	while area.is_in_group("mobs"):
+		_on_timer_timeout(area)
 			
-	if area.is_in_group("mobs"):
-		player_take_damage(10)
+			
 	pass # Replace with function body.
+
+func _on_timer_timeout(area) -> void:
+	player_take_damage(area.damage)
+	print("player took ", area.damage, " damage")
+	
