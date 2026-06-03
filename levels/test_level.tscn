@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dx6g185pk5g3l" path="res://assets/textures/Placeholder.png" id="1_e7anx"]
 [ext_resource type="PackedScene" uid="uid://cyossp82xwkms" path="res://entities/player/player.tscn" id="1_x25rp"]
 [ext_resource type="PackedScene" uid="uid://cxtphgk8y75sf" path="res://entities/collectibles/health_pack.tscn" id="2_gmgay"]
-[ext_resource type="PackedScene" uid="uid://dgilgaue38n3q" path="res://entities/mobs/fast_mob.tscn" id="3_o6mel"]
+[ext_resource type="PackedScene" uid="uid://bmdu87rqeqehq" path="res://entities/mobs/standard_mob.tscn" id="4_w7r7j"]
 
 [node name="TestLevel" type="Node2D" unique_id=925357313]
 
@@ -20,6 +20,6 @@ zoom = Vector2(0.5, 0.5)
 [node name="HealthPack" parent="." unique_id=68052092 instance=ExtResource("2_gmgay")]
 position = Vector2(287, 312)
 
-[node name="Fast Mob" parent="." unique_id=1375202296 instance=ExtResource("3_o6mel")]
-position = Vector2(890, 361)
-collision_layer = 1
+[node name="StandardMob" parent="." unique_id=1375202296 instance=ExtResource("4_w7r7j")]
+position = Vector2(755, 198)
+speed = 0

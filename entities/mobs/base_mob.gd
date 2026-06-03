@@ -13,6 +13,8 @@ var target: Player = null
 func _ready() -> void:
 	health = max_health
 	add_to_group("mobs")
+	print("Mob layers: ", collision_layer)
+	print("Mob mask: ", collision_mask)
 
 func _process(delta: float) -> void:
 	if target == null or not is_instance_valid(target):

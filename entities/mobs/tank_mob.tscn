@@ -10,3 +10,6 @@ damage = 20
 
 [node name="Sprite2D" parent="." index="0" unique_id=1804785825]
 texture = ExtResource("2_yx6xk")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1356172137]
+top_level = true

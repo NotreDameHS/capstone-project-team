@@ -6,14 +6,25 @@ var velocity = Vector2(0,0)
 var steering_factor := 10.0
 var max_health := 100
 var health := 100
-
+var dmg := 0
+var current_mob = null
+var a = null
+var queue_num = 0
+var timed = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_health(max_health)
 	add_to_group("Player")
+	print("Player layers: ", collision_layer)
+	print("Player mask: ", collision_mask)
+	print("Player instance: ", get_instance_id())
+
 	pass # Replace with function body.
 
+func _physics_process(delta: float) -> void:
+	if queue_num == 1:
+		timed += (1/60)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -39,9 +50,9 @@ func set_health(new_health: int) -> void:
 	get_node("UI/HealthBar").value = health
 	
 func player_take_damage(damage: int) -> void:
-	set_health(health - damage)
+	if current_mob != null and timed <3 and queue_num == 1:
+		set_health(health - damage)
 	
-
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("HealthPack"):
@@ -55,12 +66,30 @@ func _on_area_entered(area: Area2D) -> void:
 			print("Healing")
 
 	while area.is_in_group("mobs"):
-		_on_timer_timeout(area)
-			
-			
-	pass # Replace with function body.
+		current_mob = area
+		print("player took ", area.damage, " damage from ", area)
+		dmg = area.damage
+		player_take_damage(dmg)
+		queue_num =+ 1
+		print("damage queued ", queue_num)
+		#a = false
+		get_node("Timer").start(0.5)
 
-func _on_timer_timeout(area) -> void:
-	player_take_damage(area.damage)
-	print("player took ", area.damage, " damage")
+		
+#func _on_area_exited(area: Area2D)-> void:
+	#if area == current_mob:
+		#a = false
+		#queue_num = 0
+		#current_mob = null
+		#get_node("Timer").stop()
+
+func _on_timer_timeout() -> void:
+	#a = true
+	if current_mob != null and timed <3 and queue_num == 1:
+		player_take_damage(dmg)
+		queue_num = 0
+		timed = 0
 	
+	else:
+		current_mob = null
+		get_node("Timer").stop()

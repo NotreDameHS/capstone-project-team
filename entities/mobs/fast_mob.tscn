@@ -10,6 +10,3 @@ damage = 5
 
 [node name="Sprite2D" parent="." index="0" unique_id=1804785825]
 texture = ExtResource("2_4l8r5")
-
-[node name="CollisionShape2D" parent="." index="1" unique_id=1356172137]
-light_mask = 4
