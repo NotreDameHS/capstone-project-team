@@ -1,5 +1,8 @@
 extends Area2D  
 class_name Player
+@export var bullet_scene: PackedScene
+@export var fire_rate := 0.5
+@onready var firetimer = $FireRate
 
 var max_speed := 800
 var velocity = Vector2(0,0)
@@ -43,6 +46,18 @@ func _process(delta: float) -> void:
 	position += velocity * delta
 	pass
 	
+func shoot_weapon():
+	var bullet = bullet_scene.instantiate()
+	bullet.global_position = global_position
+	
+	var mouse_pos = get_global_mouse_position()
+	bullet.rotation = (mouse_pos - global_position).angle()
+	get_tree().current_scene.add_child(bullet)
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		shoot_weapon()
+		
 func set_health(new_health: int) -> void:
 	print("Original health: ", health)
 	health = new_health
@@ -55,17 +70,17 @@ func player_take_damage(damage: int) -> void:
 	
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("HealthPack"):
+	if area.is_in_group("HealthPack") and health < 100:
 		print("Players current health: ", health)
 		print("Max hp allowed: ", max_health)
 		if health >= max_health:
 			return
 		else:
 			set_health(health + 10)
-			#area.queue_free()
+			area.queue_free()
 			print("Healing")
 
-	while area.is_in_group("mobs"):
+	if area.is_in_group("mobs"): #change to while for continuouse (needs fixing)
 		current_mob = area
 		print("player took ", area.damage, " damage from ", area)
 		dmg = area.damage
@@ -83,7 +98,7 @@ func _on_area_entered(area: Area2D) -> void:
 		#current_mob = null
 		#get_node("Timer").stop()
 
-func _on_timer_timeout() -> void:
+func _on_timer_timeout() -> void: #continuous damage timer
 	#a = true
 	if current_mob != null and timed <3 and queue_num == 1:
 		player_take_damage(dmg)
@@ -93,3 +108,8 @@ func _on_timer_timeout() -> void:
 	else:
 		current_mob = null
 		get_node("Timer").stop()
+
+
+func _on_fire_rate_timeout() -> void: #firing speed timer
+	
+	pass # Replace with function body.

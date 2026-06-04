@@ -44,5 +44,8 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_abrql")
 value = 50.0
 show_percentage = false
 
+[node name="FireRate" type="Timer" parent="." unique_id=1873388133]
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]
