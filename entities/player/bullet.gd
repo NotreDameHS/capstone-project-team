@@ -7,7 +7,8 @@ class_name Projectile extends Area2D
 var _distance_traveled := 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	add_to_group("Bullet")
+	#print("bullet added to group")
 
 func _physics_process(delta: float) -> void:
 	position += transform.x * speed * delta
@@ -25,5 +26,6 @@ func _process(delta: float) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("mobs"):
+		area.mob_take_damage(damage)
 	_explode()
-	pass # Replace with function body.

@@ -41,19 +41,23 @@ func find_player() -> void:
 	target = closest_player
 	
 	
-func take_damage(amount: float):
-	health -= amount
-	print(health)
+
+func set_health(new_health: int) -> void:
+	#print("Original health: ", health)
+	health = new_health
+	#print("New health: ", health)
+
+func mob_take_damage(damage: int) -> void:
+	set_health(health - damage)
+	print("Mob at ",health," health")
+	
 	if health <= 0:
 		queue_free()	
 		print("mob dead")
-		
-func deal_damage(amount: float):
-	pass
-	
-#func _on_area_entered(area: Area2D):
-	#if area is Player:
-		#area.player_take_damage(damage)
-		#print("Player took "+damage+" damage")
-	#print("Passed func")
+
+
+func _on_area_entered(area: Area2D):
+	if area.is_in_group("Bullet"):
+		mob_take_damage(area.damage)
+		print("Mob at ",health,"health")
 	

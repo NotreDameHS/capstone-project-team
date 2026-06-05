@@ -11,10 +11,7 @@ var steering_factor := 10.0
 var max_health := 100
 var health := 100
 var dmg := 0
-var current_mob = null
-var a = null
-var queue_num = 0
-var timed = 0
+var isinmob = false
 
 #gun variables
 var is_firing := false
@@ -35,10 +32,6 @@ func _ready() -> void:
 	print("Player instance: ", get_instance_id())
 
 	pass # Replace with function body.
-
-func _physics_process(delta: float) -> void:
-	if queue_num == 1:
-		timed += (1/60)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -75,6 +68,7 @@ func reload():
 	reloadTimer.start()
 	
 func _unhandled_input(event: InputEvent) -> void:
+<<<<<<< Updated upstream
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			print("Weapon firing")
@@ -86,6 +80,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			print("Weapon released")
 			is_firing = false
 			firetimer.stop()
+=======
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		shoot_weapon()	
+
+>>>>>>> Stashed changes
 		
 func set_health(new_health: int) -> void:
 	print("Original health: ", health)
@@ -94,9 +93,10 @@ func set_health(new_health: int) -> void:
 	get_node("UI/HealthBar").value = health
 	
 func player_take_damage(damage: int) -> void:
-	if current_mob != null and timed <3 and queue_num == 1:
-		set_health(health - damage)
-	
+	set_health(health - damage)
+	get_node("Timer").start()
+
+
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("HealthPack") and health < 100:
@@ -110,33 +110,21 @@ func _on_area_entered(area: Area2D) -> void:
 			print("Healing")
 
 	if area.is_in_group("mobs"): #change to while for continuouse (needs fixing)
-		current_mob = area
+		isinmob = true
 		print("player took ", area.damage, " damage from ", area)
 		dmg = area.damage
 		player_take_damage(dmg)
-		queue_num =+ 1
-		print("damage queued ", queue_num)
-		#a = false
-		get_node("Timer").start(0.5)
-
 		
-#func _on_area_exited(area: Area2D)-> void:
-	#if area == current_mob:
-		#a = false
-		#queue_num = 0
-		#current_mob = null
-		#get_node("Timer").stop()
-
+func _on_area_exited(area: Area2D) -> void:
+	if area.is_in_group("mobs"):
+		isinmob = false
+		
 func _on_timer_timeout() -> void: #continuous damage timer
-	#a = true
-	if current_mob != null and timed <3 and queue_num == 1:
+	if isinmob == true:
 		player_take_damage(dmg)
-		queue_num = 0
-		timed = 0
-	
+		get_node("Timer").start()
 	else:
-		current_mob = null
-		get_node("Timer").stop()
+		pass
 
 
 func _on_fire_rate_timeout() -> void:
