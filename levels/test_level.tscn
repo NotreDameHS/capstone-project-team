@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dtvbvrwd8fkal"]
 
 [ext_resource type="Texture2D" uid="uid://dx6g185pk5g3l" path="res://assets/textures/Placeholder.png" id="1_e7anx"]
+[ext_resource type="PackedScene" uid="uid://c67lxrm46dffo" path="res://entities/mobs/mobspawn.tscn" id="1_o6mel"]
 [ext_resource type="PackedScene" uid="uid://cyossp82xwkms" path="res://entities/player/player.tscn" id="1_x25rp"]
 [ext_resource type="PackedScene" uid="uid://cxtphgk8y75sf" path="res://entities/collectibles/health_pack.tscn" id="2_gmgay"]
 [ext_resource type="PackedScene" uid="uid://buy3ykym8eokf" path="res://entities/player/bullet.tscn" id="3_o6mel"]
-[ext_resource type="PackedScene" uid="uid://bmdu87rqeqehq" path="res://entities/mobs/standard_mob.tscn" id="4_w7r7j"]
 
 [node name="TestLevel" type="Node2D" unique_id=925357313]
 
@@ -12,6 +12,9 @@
 position = Vector2(1, -1)
 scale = Vector2(10, 10)
 texture = ExtResource("1_e7anx")
+
+[node name="Mobspawn" parent="." unique_id=920248998 instance=ExtResource("1_o6mel")]
+position = Vector2(229.78577, 332.65384)
 
 [node name="Player" parent="." unique_id=2054215807 instance=ExtResource("1_x25rp")]
 bullet_scene = ExtResource("3_o6mel")
@@ -21,7 +24,3 @@ zoom = Vector2(0.5, 0.5)
 
 [node name="HealthPack" parent="." unique_id=68052092 instance=ExtResource("2_gmgay")]
 position = Vector2(287, 312)
-
-[node name="StandardMob" parent="." unique_id=1375202296 instance=ExtResource("4_w7r7j")]
-position = Vector2(755, 198)
-speed = 0
