@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgn4f761kehen"
-path="res://.godot/imported/Fast_mob.png-9593c162d67c5b5fa234f7af073eb691.ctex"
+path="res://.godot/imported/Fast_Mob.png-652689b29bbee41d8efa57f23991a686.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/Fast_mob.png"
-dest_files=["res://.godot/imported/Fast_mob.png-9593c162d67c5b5fa234f7af073eb691.ctex"]
+source_file="res://assets/textures/Fast_Mob.png"
+dest_files=["res://.godot/imported/Fast_Mob.png-652689b29bbee41d8efa57f23991a686.ctex"]
 
 [params]
 
