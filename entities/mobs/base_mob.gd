@@ -56,8 +56,8 @@ func mob_take_damage(damage: int) -> void:
 		print("mob dead")
 
 
-func _on_area_entered(area: Area2D):
-	if area.is_in_group("Bullet"):
-		mob_take_damage(area.damage)
-		print("Mob at ",health,"health")
+#func _on_area_entered(area: Area2D):
+	#if area.is_in_group("Bullet"):
+		#mob_take_damage(area.damage)
+		#print("Mob at ",health,"health")
 	
