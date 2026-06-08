@@ -4,6 +4,8 @@ class_name Player
 @export var fire_rate := 0.3
 @onready var firetimer = $FireRate
 @onready var reloadTimer = $ReloadTimer
+#map variables
+var world_bounds = Rect2(0, 0, 1000, 1000)
 
 var max_speed := 800
 var velocity = Vector2(0,0)
@@ -31,23 +33,28 @@ func _ready() -> void:
 	print("Player mask: ", collision_mask)
 	print("Player instance: ", get_instance_id())
 
+	print("World bounds: ", world_bounds)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-
+	#if position < world_bounds:
+		
 	var direction := Vector2(0,0)
 	direction.x = Input.get_axis("move_left", "move_right")
 	direction.y = Input.get_axis("move_up", "move_down")
-	
+		
 	if direction.length() > 1.0:
 		direction = direction.normalized()
-		
+			
 	var desired_velocity := direction * max_speed
 	var steering_vector = desired_velocity - velocity
 	velocity += steering_factor * steering_vector * delta
-	
+		
 	position += velocity * delta
+	
+
+	
 	pass
 	
 func shoot_weapon():

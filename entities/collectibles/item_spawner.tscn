@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://7xiw5tgnyor0"]
+
+[ext_resource type="Script" uid="uid://da7ourhifj72a" path="res://entities/collectibles/item_spawner.gd" id="1_dcb6w"]
+
+[node name="ItemSpawner" type="Node2D" unique_id=458233072]
+script = ExtResource("1_dcb6w")
+
+[node name="Timer" type="Timer" parent="." unique_id=1547621951]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
