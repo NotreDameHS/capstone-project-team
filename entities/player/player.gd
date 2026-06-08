@@ -68,7 +68,7 @@ func reload():
 	reloadTimer.start()
 	
 func _unhandled_input(event: InputEvent) -> void:
-<<<<<<< Updated upstream
+#<<<<<<< Updated upstream
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			print("Weapon firing")
@@ -80,11 +80,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			print("Weapon released")
 			is_firing = false
 			firetimer.stop()
-=======
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		shoot_weapon()	
-
->>>>>>> Stashed changes
 		
 func set_health(new_health: int) -> void:
 	print("Original health: ", health)
