@@ -1,20 +1,35 @@
 extends Node2D
+
 var mob_types := [
 preload("res://entities/mobs/standard_mob.tscn"),
 preload("res://entities/mobs/fast_mob.tscn"),
 preload("res://entities/mobs/tank_mob.tscn")
 ]
+
 var mob_cap : int = 0
 var phase = 0
 var probability: Array[int] = [0,0,0,0,1,1,2]
-# Called when the node enters the scene tree for the first time.
+var num_mobs := 0
+var wavenum = 1
+var wavecap = 3
+var count = 5
+
+@onready var spawntimer = $SpawnTimer
+@onready var wavetimer = $WaveTimer
+@onready var timer1 = $Timer
 
 func _ready() -> void:
 	pass
 
 func _on_timer_timeout() -> void:
 	phase = 0
+	count = 5
+	
+	if mob_cap == 0:
+		print("Wave ", wavenum, " Has Begun!")
+	
 	while mob_cap < 5 and phase == 0:
+
 		var pick = probability.pick_random()
 		print(pick)
 		var random_mob : PackedScene = mob_types[pick]
@@ -33,4 +48,22 @@ func _on_timer_timeout() -> void:
 		
 		mob_cap += 1
 		phase = 1
-		break
+		
+	if mob_cap == 4 and phase == 1:
+		wavetimer.start()
+		
+
+func _on_wave_timer_timeout() -> void:
+	timer1.start()
+	if count >= 0 and wavenum < wavecap :
+		mob_cap = 0
+		phase = 0
+		wavenum += 1
+		spawntimer.start()
+
+
+func _on_timer1_timeout() -> void:
+	if count <= 0:
+		print(count, " Seconds to the Next Wave")
+	count -= 1
+	

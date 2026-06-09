@@ -26,6 +26,7 @@ func _process(delta: float) -> void:
 		#rotation = lerp_angle(rotation, target_angle, turning_speed * delta)
 		position += direction * speed * delta
 
+
 func find_player() -> void:
 	var closest_player: Player = null
 	var shortest_dist = search_radius
@@ -52,8 +53,9 @@ func mob_take_damage(damage: int) -> void:
 	print("Mob at ",health," health")
 	
 	if health <= 0:
-		queue_free()	
+		
 		print("mob dead")
+		queue_free()	
 
 
 #func _on_area_entered(area: Area2D):
