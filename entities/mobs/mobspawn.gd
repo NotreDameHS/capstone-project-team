@@ -12,7 +12,7 @@ var probability: Array[int] = [0,0,0,0,1,1,2]
 var num_mobs := 0
 var wavenum = 1
 var wavecap = 3
-var count = 5
+var count = 10
 
 @onready var spawntimer = $SpawnTimer
 @onready var wavetimer = $WaveTimer
@@ -23,7 +23,7 @@ func _ready() -> void:
 
 func _on_timer_timeout() -> void:
 	phase = 0
-	count = 5
+	count = 10
 	
 	if mob_cap == 0:
 		print("Wave ", wavenum, " Has Begun!")

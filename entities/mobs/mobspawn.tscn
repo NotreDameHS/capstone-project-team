@@ -10,7 +10,7 @@ wait_time = 3.0
 autostart = true
 
 [node name="WaveTimer" type="Timer" parent="." unique_id=2090788422]
-wait_time = 10.0
+wait_time = 15.0
 
 [node name="Timer" type="Timer" parent="." unique_id=273949363]
 
