@@ -38,7 +38,7 @@ func poof(projectile_position: Vector2):
 	particles.initial_velocity_min = 80.0
 	particles.initial_velocity_max = 150.0
 	particles.damping_min = 50.0 
-
+	particles.modulate = Color(0.851, 0.337, 0.0, 1.0)
 	# Design the shape of the cloud (the "poof")
 	var curve = Curve.new()
 	curve.add_point(Vector2(0, 1.0)) 

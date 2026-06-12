@@ -15,7 +15,7 @@ func _ready() -> void:
 	add_to_group("mobs")
 	print("Mob layers: ", collision_layer)
 	print("Mob mask: ", collision_mask)
-
+#Pathfinding Logic
 func _process(delta: float) -> void:
 	if target == null or not is_instance_valid(target):
 		find_player()
@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 		#rotation = lerp_angle(rotation, target_angle, turning_speed * delta)
 		position += direction * speed * delta
 
-
+#Directional Logic
 func find_player() -> void:
 	var closest_player: Player = null
 	var shortest_dist = search_radius
@@ -42,22 +42,23 @@ func find_player() -> void:
 	target = closest_player
 	
 	
-
+#Health gettor
 func set_health(new_health: int) -> void:
 	#print("Original health: ", health)
 	health = new_health
 	#print("New health: ", health)
-
+#Mob Damage function
 func mob_take_damage(damage: int) -> void:
 	set_health(health - damage)
-	print("Mob at ",health," health")
+	#print("Mob at ",health," health")
 	
 	if health <= 0:
-		
-		print("mob dead")
+		GameManager.remove_active_mobs(self)
+		GameManager.inc_killed_mobs()
+		#print(len(GameManager.get_active_mobs())," Remaining")
 		queue_free()	
 
-
+#Scrapped Damage Function(Works, kept in case melee is to be added)
 #func _on_area_entered(area: Area2D):
 	#if area.is_in_group("Bullet"):
 		#mob_take_damage(area.damage)

@@ -9,7 +9,7 @@
 [node name="TestLevel" type="Node2D" unique_id=925357313]
 
 [node name="Placeholder" type="Sprite2D" parent="." unique_id=1061031368]
-position = Vector2(1, -1)
+position = Vector2(10.999999, -3.9999998)
 scale = Vector2(10, 10)
 texture = ExtResource("1_e7anx")
 

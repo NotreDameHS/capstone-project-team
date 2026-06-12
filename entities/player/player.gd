@@ -78,13 +78,13 @@ func _unhandled_input(event: InputEvent) -> void:
 #<<<<<<< Updated upstream
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			print("Weapon firing")
+			#print("Weapon firing")
 			is_firing = true
 			if current_ammo > 0:
 				shoot_weapon()
 				firetimer.start()
 		else:
-			print("Weapon released")
+			#print("Weapon released")
 			is_firing = false
 			firetimer.stop()
 		
