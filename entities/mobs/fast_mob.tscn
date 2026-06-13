@@ -4,10 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://bgn4f761kehen" path="res://assets/textures/Fast_Mob.png" id="2_4l8r5"]
 
 [node name="Fast Mob" unique_id=1375202296 instance=ExtResource("1_wpuqo")]
-collision_mask = 9
 max_health = 50
 speed = 550
 damage = 5
 
 [node name="Sprite2D" parent="." index="0" unique_id=1804785825]
 texture = ExtResource("2_4l8r5")
+
+[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(966835322) index="0" unique_id=1934333816]
+position = Vector2(22, 33)

@@ -4,15 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://bqljm284opcm8" path="res://assets/textures/healthpack.png" id="2_g2hxq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c7nae"]
-radius = 31.016125
+radius = 8.062258
 
 [node name="HealthPack" type="Area2D" unique_id=68052092]
 collision_layer = 2
 script = ExtResource("1_vtdll")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1922758402]
-position = Vector2(-3.0517578e-05, 0)
-scale = Vector2(0.1858006, 0.18965517)
+position = Vector2(5.9604645e-08, 2.3841858e-07)
+scale = Vector2(0.04352671, 0.044429705)
 texture = ExtResource("2_g2hxq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=734070718]

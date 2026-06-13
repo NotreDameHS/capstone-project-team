@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://crio7mo1dmqmd" path="res://entities/player/player.gd" id="2_abrql"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_abrql"]
-radius = 124.0
-height = 322.0
+radius = 8.0
+height = 36.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abrql"]
 bg_color = Color(1.540184e-06, 0.95405155, 0.41354704, 1)
@@ -14,18 +14,23 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[node name="Player" type="Area2D" unique_id=2054215807]
-collision_mask = 6
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sglur"]
+radius = 8.0
+height = 36.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1871980092]
+collision_mask = 16
 script = ExtResource("2_abrql")
 
 [node name="Timer" type="Timer" parent="." unique_id=1848553408]
 process_callback = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=183199497]
+position = Vector2(0, -2.3841858e-07)
+scale = Vector2(0.09591585, 0.095915824)
 texture = ExtResource("1_symyc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=715891885]
-position = Vector2(-1, 8)
 shape = SubResource("CapsuleShape2D_abrql")
 
 [node name="UI" type="Control" parent="." unique_id=1085529247]
@@ -33,13 +38,14 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
 
 [node name="HealthBar" type="ProgressBar" parent="UI" unique_id=1082026495]
 layout_mode = 0
-offset_left = -99.0
-offset_top = -192.0
-offset_right = 102.0
-offset_bottom = -165.0
+offset_left = -11.0
+offset_top = -23.0
+offset_right = 10.0
+offset_bottom = -19.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_abrql")
 value = 50.0
 show_percentage = false
@@ -48,8 +54,16 @@ show_percentage = false
 
 [node name="ReloadTimer" type="Timer" parent="." unique_id=826246185]
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[node name="Detction" type="Area2D" parent="." unique_id=1912211214]
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detction" unique_id=1291762719]
+shape = SubResource("CapsuleShape2D_sglur")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
+[connection signal="area_entered" from="Detction" to="." method="_on_detction_area_entered"]
+[connection signal="area_exited" from="Detction" to="." method="_on_detction_area_exited"]
+[connection signal="body_entered" from="Detction" to="." method="_on_detction_body_entered"]
+[connection signal="body_exited" from="Detction" to="." method="_on_detction_body_exited"]

@@ -1,8 +1,8 @@
 class_name Projectile extends Area2D
 
 @export var damage := 10
-@export var max_distance := 2000
-@export var speed := 900
+@export var max_distance := 100
+@export var speed := 200
 
 var _distance_traveled := 0
 # Called when the node enters the scene tree for the first time.
@@ -60,7 +60,13 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("mobs"):
-		area.mob_take_damage(damage)
-	_explode()
+
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("mobs"):
+		body.mob_take_damage(damage)
+		_explode()
+	else:
+		_explode()
+	pass # Replace with function body.

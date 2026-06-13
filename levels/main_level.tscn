@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dkp3hxuxonurx"]
+
+[ext_resource type="PackedScene" uid="uid://cq856vbop6lrs" path="res://levels/world.tscn" id="1_0vhbo"]
+[ext_resource type="PackedScene" uid="uid://7xiw5tgnyor0" path="res://entities/collectibles/item_spawner.tscn" id="2_55n5f"]
+[ext_resource type="PackedScene" uid="uid://cyossp82xwkms" path="res://entities/player/player.tscn" id="3_ldao0"]
+[ext_resource type="PackedScene" uid="uid://buy3ykym8eokf" path="res://entities/player/bullet.tscn" id="4_55n5f"]
+
+[node name="MainLevel" type="Node2D" unique_id=194959859]
+
+[node name="World" parent="." unique_id=874884849 instance=ExtResource("1_0vhbo")]
+
+[node name="ItemSpawner" parent="." unique_id=458233072 instance=ExtResource("2_55n5f")]
+
+[node name="Player" parent="." unique_id=1871980092 instance=ExtResource("3_ldao0")]
+position = Vector2(152, 322)
+bullet_scene = ExtResource("4_55n5f")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=335050094]
+zoom = Vector2(3, 3)

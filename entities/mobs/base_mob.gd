@@ -1,4 +1,4 @@
-class_name Mob extends Area2D
+class_name Mob extends CharacterBody2D
 
 @export var max_health = 100
 @export var health = max_health
@@ -16,7 +16,7 @@ func _ready() -> void:
 	print("Mob layers: ", collision_layer)
 	print("Mob mask: ", collision_mask)
 #Pathfinding Logic
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if target == null or not is_instance_valid(target):
 		find_player()
 
@@ -24,7 +24,8 @@ func _process(delta: float) -> void:
 		var direction = (target.global_position - global_position).normalized()
 		var target_angle = direction.angle()
 		#rotation = lerp_angle(rotation, target_angle, turning_speed * delta)
-		position += direction * speed * delta
+		velocity = direction * speed
+		move_and_slide()
 
 #Directional Logic
 func find_player() -> void:
@@ -50,7 +51,7 @@ func set_health(new_health: int) -> void:
 #Mob Damage function
 func mob_take_damage(damage: int) -> void:
 	set_health(health - damage)
-	#print("Mob at ",health," health")
+	print("Mob at ",health," health")
 	
 	if health <= 0:
 		GameManager.remove_active_mobs(self)

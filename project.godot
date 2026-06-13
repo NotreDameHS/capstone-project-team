@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Capstone Project"
-run/main_scene="uid://dtvbvrwd8fkal"
+run/main_scene="uid://dkp3hxuxonurx"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -48,6 +48,7 @@ move_down={
 2d_physics/layer_2="Healthpack"
 2d_physics/layer_3="Mob"
 2d_physics/layer_4="Projectile"
+2d_physics/layer_5="Walls"
 
 [physics]
 

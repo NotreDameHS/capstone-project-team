@@ -1,14 +1,11 @@
-extends Area2D  
+extends CharacterBody2D  
 class_name Player
 @export var bullet_scene: PackedScene
 @export var fire_rate := 0.3
 @onready var firetimer = $FireRate
 @onready var reloadTimer = $ReloadTimer
-#map variables
-var world_bounds = Rect2(0, 0, 1000, 1000)
 
-var max_speed := 800
-var velocity = Vector2(0,0)
+var max_speed := 200
 var steering_factor := 10.0
 var max_health := 100
 var health := 100
@@ -29,16 +26,15 @@ func _ready() -> void:
 	firetimer.wait_time = fire_rate
 	reloadTimer.wait_time = reload_time
 	
-	print("Player layers: ", collision_layer)
-	print("Player mask: ", collision_mask)
-	print("Player instance: ", get_instance_id())
+	#print("Player layers: ", collision_layer)
+	#print("Player mask: ", collision_mask)
+	#print("Player instance: ", get_instance_id())
 
-	print("World bounds: ", world_bounds)
+
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	#if position < world_bounds:
 		
 	var direction := Vector2(0,0)
 	direction.x = Input.get_axis("move_left", "move_right")
@@ -50,8 +46,7 @@ func _process(delta: float) -> void:
 	var desired_velocity := direction * max_speed
 	var steering_vector = desired_velocity - velocity
 	velocity += steering_factor * steering_vector * delta
-		
-	position += velocity * delta
+	move_and_slide()
 	
 
 	
@@ -96,36 +91,15 @@ func set_health(new_health: int) -> void:
 	
 func player_take_damage(damage: int) -> void:
 	set_health(health - damage)
-	get_node("Timer").start()
-
-
-
-func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("HealthPack") and health < 100:
-		print("Players current health: ", health)
-		print("Max hp allowed: ", max_health)
-		if health >= max_health:
-			return
-		else:
-			set_health(health + 10)
-			area.queue_free()
-			print("Healing")
-
-	if area.is_in_group("mobs"): #change to while for continuouse (needs fixing)
-		isinmob = true
-		print("player took ", area.damage, " damage from ", area)
-		dmg = area.damage
-		player_take_damage(dmg)
-		
-func _on_area_exited(area: Area2D) -> void:
-	if area.is_in_group("mobs"):
-		isinmob = false
+	
 		
 func _on_timer_timeout() -> void: #continuous damage timer
-	if isinmob == true:
+	if isinmob == true and health > 0:
+		print("Player will take: ", dmg, "HP")
 		player_take_damage(dmg)
-		get_node("Timer").start()
+
 	else:
+		get_node("Timer").stop()
 		pass
 
 
@@ -156,4 +130,36 @@ func _on_reload_timer_timeout() -> void: #reload timer
 		if is_firing:
 			firetimer.start()
 		
+	pass # Replace with function body.
+
+
+func _on_detction_area_entered(area: Area2D) -> void:
+	if area.is_in_group("HealthPack") and health < 100:
+		print("Players current health: ", health)
+		print("Max hp allowed: ", max_health)
+
+		set_health(health + 10)
+		area.queue_free()
+		print("Healing")
+	#pass # Replace with function body.
+	pass # Replace with function body.
+
+
+func _on_detction_body_entered(body: Node2D) -> void:
+	if body.is_in_group("mobs") and health > 0:
+		isinmob = true
+		
+		dmg = body.damage
+		player_take_damage(dmg)
+		get_node("Timer").start()
+	if health <= 0:
+		print("You should be dead")
+	#pass # Replace with function body.
+
+
+func _on_detction_body_exited(body: Node2D) -> void:
+	if body.is_in_group("mobs"):
+		
+		isinmob = false
+		get_node("Timer").stop()
 	pass # Replace with function body.
