@@ -6,6 +6,7 @@ var killed_mobs = 0
 
 signal all_mobs_dead
 
+
 func get_active_mobs():
 	return active_mobs
 	#pass

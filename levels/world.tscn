@@ -2018,6 +2018,7 @@ tile_set = SubResource("TileSet_i8ckm")
 
 [node name="Collisions" type="StaticBody2D" parent="." unique_id=897113788]
 collision_layer = 16
+collision_mask = 13
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions" unique_id=392836790]
 position = Vector2(14, 322)

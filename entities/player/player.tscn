@@ -42,10 +42,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="HealthBar" type="ProgressBar" parent="UI" unique_id=1082026495]
 layout_mode = 0
-offset_left = -11.0
-offset_top = -23.0
-offset_right = 10.0
-offset_bottom = -19.0
+offset_left = -23.0
+offset_top = -26.0
+offset_right = 24.250004
+offset_bottom = -20.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_abrql")
 value = 50.0
 show_percentage = false

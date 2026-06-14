@@ -1,6 +1,6 @@
 extends Node2D
 
-var pack_cap := 10
+var pack_cap := 5
 var current_packs := 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

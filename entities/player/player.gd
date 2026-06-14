@@ -19,6 +19,10 @@ var current_ammo := 20
 var reload_time := 1.5
 var current_reload := false
 
+#ui changes
+signal health_changed(new_health)
+signal ammo_changed(new_ammo)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_health(max_health)
@@ -26,6 +30,8 @@ func _ready() -> void:
 	firetimer.wait_time = fire_rate
 	reloadTimer.wait_time = reload_time
 	
+	health_changed.emit(health)
+	ammo_changed.emit(current_ammo)
 	#print("Player layers: ", collision_layer)
 	#print("Player mask: ", collision_mask)
 	#print("Player instance: ", get_instance_id())
@@ -70,14 +76,18 @@ func reload():
 	reloadTimer.start()
 	
 func _unhandled_input(event: InputEvent) -> void:
-#<<<<<<< Updated upstream
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			#print("Weapon firing")
+			print("Weapon firing, current ammo is", current_ammo)
 			is_firing = true
 			if current_ammo > 0:
 				shoot_weapon()
+				current_ammo -= 1
+				ammo_changed.emit(current_ammo)
 				firetimer.start()
+			else:
+				reload()
+				return
 		else:
 			#print("Weapon released")
 			is_firing = false
@@ -88,6 +98,7 @@ func set_health(new_health: int) -> void:
 	health = new_health
 	print("New health: ", health)
 	get_node("UI/HealthBar").value = health
+	health_changed.emit(health)
 	
 func player_take_damage(damage: int) -> void:
 	set_health(health - damage)
@@ -111,6 +122,8 @@ func _on_fire_rate_timeout() -> void:
 	if is_firing:
 		shoot_weapon()
 		current_ammo -= 1
+		
+		ammo_changed.emit(current_ammo)
 		print(current_ammo)
 		
 		if current_ammo > 0:
@@ -125,6 +138,7 @@ func _on_reload_timer_timeout() -> void: #reload timer
 	if current_reload:
 		current_ammo = max_ammo
 		print("Reloaded")
+		ammo_changed.emit(current_ammo)
 		current_reload = false
 		
 		if is_firing:
@@ -137,10 +151,13 @@ func _on_detction_area_entered(area: Area2D) -> void:
 	if area.is_in_group("HealthPack") and health < 100:
 		print("Players current health: ", health)
 		print("Max hp allowed: ", max_health)
-
-		set_health(health + 10)
-		area.queue_free()
-		print("Healing")
+		if health + 10 < 100:
+			set_health(health + 10)
+			area.queue_free()
+			print("Healing")
+		else:
+			set_health(max_health)
+			area.queue_free()
 	#pass # Replace with function body.
 	pass # Replace with function body.
 

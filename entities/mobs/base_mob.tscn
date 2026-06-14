@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://5qb3tp6af2dh" path="res://assets/textures/Player.png" id="2_esahr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_esahr"]
-radius = 203.0
-height = 508.0
+radius = 16.0
+height = 34.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6p3g"]
-radius = 161.0
-height = 442.0
+radius = 33.0
+height = 78.0
 
 [node name="BaseMob" type="CharacterBody2D" unique_id=1873820429]
 collision_layer = 4
@@ -17,13 +17,11 @@ collision_mask = 16
 script = ExtResource("1_esahr")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1804785825]
-position = Vector2(-2.500001, 3.0249915)
-scale = Vector2(1, 0.49321914)
+scale = Vector2(0.1369637, 0.0675531)
 texture = ExtResource("2_esahr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1356172137]
 light_mask = 4
-position = Vector2(-2, 20)
 shape = SubResource("CapsuleShape2D_esahr")
 
 [node name="Detection" type="Area2D" parent="." unique_id=966835322]
@@ -31,6 +29,7 @@ collision_layer = 4
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection" unique_id=1934333816]
+visible = false
 shape = SubResource("CapsuleShape2D_e6p3g")
 
 [connection signal="body_entered" from="Detection" to="." method="_on_area_2d_body_entered"]

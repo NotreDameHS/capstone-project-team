@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://408dvixtih4w"]
+
+[ext_resource type="LabelSettings" uid="uid://ba66jhuyhantu" path="res://ui/ui_label.tres" id="1_cfom6"]
+[ext_resource type="Script" uid="uid://bppftlupqpvms" path="res://ui/player_ui.gd" id="1_vq5xy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vq5xy"]
+bg_color = Color(0, 0, 0, 0.5254902)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehg4m"]
+bg_color = Color(0, 0, 0, 0.5254902)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Player UI" type="CanvasLayer" unique_id=528886292]
+script = ExtResource("1_vq5xy")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=419891345]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1823522441]
+layout_mode = 2
+
+[node name="AmmoPanel" type="Panel" parent="MarginContainer/HBoxContainer" unique_id=294965124]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vq5xy")
+
+[node name="AmmoCount" type="Label" parent="MarginContainer/HBoxContainer/AmmoPanel" unique_id=1893795738]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "AMMO"
+label_settings = ExtResource("1_cfom6")
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer" unique_id=474701822]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HealthPanel" type="Panel" parent="MarginContainer/HBoxContainer" unique_id=1702273191]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ehg4m")
+
+[node name="HealthLabel" type="Label" parent="MarginContainer/HBoxContainer/HealthPanel" unique_id=1837734841]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "HEALTH"
+label_settings = ExtResource("1_cfom6")

@@ -9,7 +9,12 @@ speed = 250
 damage = 20
 
 [node name="Sprite2D" parent="." index="0" unique_id=1804785825]
+position = Vector2(0, 9.536743e-07)
+scale = Vector2(0.21431519, 0.10570434)
 texture = ExtResource("2_yx6xk")
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1356172137]
 top_level = true
+
+[node name="CollisionShape2D" parent="Detection" parent_id_path=PackedInt32Array(966835322) index="0" unique_id=1934333816]
+visible = true

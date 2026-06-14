@@ -4,6 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://7xiw5tgnyor0" path="res://entities/collectibles/item_spawner.tscn" id="2_55n5f"]
 [ext_resource type="PackedScene" uid="uid://cyossp82xwkms" path="res://entities/player/player.tscn" id="3_ldao0"]
 [ext_resource type="PackedScene" uid="uid://buy3ykym8eokf" path="res://entities/player/bullet.tscn" id="4_55n5f"]
+[ext_resource type="PackedScene" uid="uid://dgilgaue38n3q" path="res://entities/mobs/fast_mob.tscn" id="6_43k3a"]
+[ext_resource type="PackedScene" uid="uid://dn6cr8xxxkhan" path="res://entities/mobs/tank_mob.tscn" id="7_ttu8v"]
+[ext_resource type="PackedScene" uid="uid://408dvixtih4w" path="res://ui/player_ui.tscn" id="8_ggk2x"]
+[ext_resource type="PackedScene" uid="uid://bmdu87rqeqehq" path="res://entities/mobs/standard_mob.tscn" id="8_ttu8v"]
 
 [node name="MainLevel" type="Node2D" unique_id=194959859]
 
@@ -17,3 +21,17 @@ bullet_scene = ExtResource("4_55n5f")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=335050094]
 zoom = Vector2(3, 3)
+
+[node name="Fast Mob" parent="." unique_id=1375202296 instance=ExtResource("6_43k3a")]
+position = Vector2(74, 268)
+speed = 150
+
+[node name="StandardMob" parent="." unique_id=1811017515 instance=ExtResource("8_ttu8v")]
+position = Vector2(94, 434)
+speed = 100
+
+[node name="Tank Mob" parent="." unique_id=728904385 instance=ExtResource("7_ttu8v")]
+position = Vector2(94, 542)
+speed = 75
+
+[node name="Player UI" parent="." unique_id=528886292 instance=ExtResource("8_ggk2x")]

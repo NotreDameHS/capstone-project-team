@@ -8,3 +8,6 @@ speed = 400
 
 [node name="Sprite2D" parent="." index="0" unique_id=1804785825]
 texture = ExtResource("2_p7u6f")
+
+[node name="CollisionShape2D" parent="Detection" parent_id_path=PackedInt32Array(966835322) index="0" unique_id=1934333816]
+visible = true
