@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cmk7w2064ai0c"]
+
+[ext_resource type="PackedScene" uid="uid://buy3ykym8eokf" path="res://entities/player/bullet.tscn" id="1_r7c2n"]
+[ext_resource type="Texture2D" uid="uid://gg3wr4xtvkau" path="res://assets/textures/Bomb.png" id="2_6buih"]
+
+[node name="Bomb" unique_id=1200442485 instance=ExtResource("1_r7c2n")]
+damage = 150
+max_distance = 50
+speed = 100
+explo_scale = 4
+
+[node name="Sprite2D" parent="." index="0" unique_id=925148711]
+position = Vector2(0, -0.9999998)
+scale = Vector2(0.052011985, 0.04625119)
+texture = ExtResource("2_6buih")

@@ -54,6 +54,9 @@ show_percentage = false
 
 [node name="ReloadTimer" type="Timer" parent="." unique_id=826246185]
 
+[node name="BombTimer" type="Timer" parent="." unique_id=1873099882]
+wait_time = 5.0
+
 [node name="Detction" type="Area2D" parent="." unique_id=1912211214]
 collision_mask = 7
 
@@ -63,6 +66,7 @@ shape = SubResource("CapsuleShape2D_sglur")
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="BombTimer" to="." method="_on_bomb_timer_timeout"]
 [connection signal="area_entered" from="Detction" to="." method="_on_detction_area_entered"]
 [connection signal="area_exited" from="Detction" to="." method="_on_detction_area_exited"]
 [connection signal="body_entered" from="Detction" to="." method="_on_detction_body_entered"]

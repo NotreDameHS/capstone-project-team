@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cyossp82xwkms" path="res://entities/player/player.tscn" id="3_ldao0"]
 [ext_resource type="PackedScene" uid="uid://c67lxrm46dffo" path="res://entities/mobs/mobspawn.tscn" id="3_yb8kn"]
 [ext_resource type="PackedScene" uid="uid://buy3ykym8eokf" path="res://entities/player/bullet.tscn" id="4_55n5f"]
+[ext_resource type="PackedScene" uid="uid://cmk7w2064ai0c" path="res://entities/player/bomb.tscn" id="6_43k3a"]
 [ext_resource type="PackedScene" uid="uid://408dvixtih4w" path="res://ui/player_ui.tscn" id="8_ggk2x"]
 
 [node name="MainLevel" type="Node2D" unique_id=194959859]
@@ -14,11 +15,12 @@ tile_map_data = PackedByteArray("AAAAAAAAAAABAAEAAAAAAAEAAAABAAEAAAAAAAIAAAABAAE
 
 [node name="ItemSpawner" parent="." unique_id=458233072 instance=ExtResource("2_55n5f")]
 
-[node name="Mobspawn" parent="." unique_id=920248998 instance=ExtResource("3_yb8kn")]
+[node name="MobSpawn" parent="." unique_id=920248998 instance=ExtResource("3_yb8kn")]
 
 [node name="Player" parent="." unique_id=1871980092 instance=ExtResource("3_ldao0")]
 position = Vector2(152, 322)
 bullet_scene = ExtResource("4_55n5f")
+bomb_scene = ExtResource("6_43k3a")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=335050094]
 zoom = Vector2(3, 3)

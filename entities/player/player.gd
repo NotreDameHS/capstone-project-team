@@ -1,9 +1,11 @@
 extends CharacterBody2D  
 class_name Player
 @export var bullet_scene: PackedScene
+@export var bomb_scene: PackedScene
 @export var fire_rate := 0.3
 @onready var firetimer = $FireRate
 @onready var reloadTimer = $ReloadTimer
+@onready var bombTimer = $BombTimer
 
 var max_speed := 200
 var steering_factor := 10.0
@@ -19,9 +21,16 @@ var current_ammo := 20
 var reload_time := 1.5
 var current_reload := false
 
+var is_throw := false
+var max_bomb := 1
+var current_bomb := 1
+var reload_bomb := 5
+var current_reload_bomb := false
+
 #ui changes
 signal health_changed(new_health)
 signal ammo_changed(new_ammo)
+signal bomb_changed(new_bomb)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,6 +41,7 @@ func _ready() -> void:
 	
 	health_changed.emit(health)
 	ammo_changed.emit(current_ammo)
+	bomb_changed.emit(current_bomb)
 	#print("Player layers: ", collision_layer)
 	#print("Player mask: ", collision_mask)
 	#print("Player instance: ", get_instance_id())
@@ -66,14 +76,30 @@ func shoot_weapon():
 	bullet.rotation = (mouse_pos - global_position).angle()
 	get_tree().current_scene.add_child(bullet)
 	
-func reload():
+func throw_bomb():
+	var bomb = bomb_scene.instantiate()
+	bomb.global_position = global_position
+	
+	var mouse_pos = get_global_mouse_position()
+	bomb.rotation = (mouse_pos - global_position).angle()
+	get_tree().current_scene.add_child(bomb)
+	
+func reload(proj_type):
 	if current_reload:
 		return
 	
-	is_firing = false
-	print("Reloading...")
-	current_reload = true
-	reloadTimer.start()
+	if proj_type == "bullet":
+		is_firing = false
+		print("Reloading...")
+		current_reload = true
+		reloadTimer.start()
+		
+	elif proj_type == "bomb":
+		is_throw = false
+		print("Reloading Bomb...")
+		current_reload_bomb = true
+		bombTimer.start()
+	
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -86,12 +112,30 @@ func _unhandled_input(event: InputEvent) -> void:
 				ammo_changed.emit(current_ammo)
 				firetimer.start()
 			else:
-				reload()
+				reload("bullet")
 				return
 		else:
 			#print("Weapon released")
 			is_firing = false
 			firetimer.stop()
+			
+	
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
+		if event.pressed:
+			print("Bomb Thrown, current ammo is", current_bomb)
+			is_throw = true
+			if current_bomb > 0:
+				throw_bomb()
+				current_bomb -= 1
+				bomb_changed.emit(current_bomb)
+				reload("bomb")
+			else:
+				reload("bomb")
+				return
+		else:
+			#print("Weapon released")
+			is_throw = false
+			#firetimer.stop()
 		
 func set_health(new_health: int) -> void:
 	print("Original health: ", health)
@@ -102,6 +146,10 @@ func set_health(new_health: int) -> void:
 	
 func player_take_damage(damage: int) -> void:
 	set_health(health - damage)
+	if health <= 0:
+		print("You should be dead")
+		GameManager.playerHealth = 0
+		GameManager.died()
 	
 		
 func _on_timer_timeout() -> void: #continuous damage timer
@@ -116,7 +164,7 @@ func _on_timer_timeout() -> void: #continuous damage timer
 
 func _on_fire_rate_timeout() -> void:
 	if current_ammo <= 0:
-		reload()
+		reload("bullet")
 		return
 		
 	if is_firing:
@@ -129,7 +177,7 @@ func _on_fire_rate_timeout() -> void:
 		if current_ammo > 0:
 			firetimer.start()
 		else:
-			reload()
+			reload("bullet")
 			return
 		pass # Replace with function body.
 
@@ -147,6 +195,15 @@ func _on_reload_timer_timeout() -> void: #reload timer
 	pass # Replace with function body.
 
 
+func _on_bomb_timer_timeout() -> void:
+	if current_bomb < 1:
+		current_bomb = max_bomb
+		print("More bombs")
+		bomb_changed.emit(current_bomb)
+		current_reload_bomb = false
+
+		
+	pass # Replace with function body.
 func _on_detction_area_entered(area: Area2D) -> void:
 	if area.is_in_group("HealthPack") and health < 100:
 		print("Players current health: ", health)
@@ -171,6 +228,8 @@ func _on_detction_body_entered(body: Node2D) -> void:
 		get_node("Timer").start()
 	if health <= 0:
 		print("You should be dead")
+		GameManager.playerHealth = 0
+		GameManager.died()
 	#pass # Replace with function body.
 
 
