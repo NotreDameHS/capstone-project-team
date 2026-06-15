@@ -9,7 +9,7 @@ var mob_cap : int = 0
 var phase = 0
 var probability: Array[int] = [0,0,0,0,1,1,2]
 var num_mobs = len(GameManager.get_active_mobs())
-var wavenum = 1
+var wavenum = GameManager.wavenum
 var wavecap = 3
 var count = 5 
 var stop_spawn = false
@@ -28,7 +28,7 @@ func _ready() -> void:
 func _on_timer_timeout() -> void:
 	phase = 0
 	count = 10
-	
+	GameManager.wavenum = wavenum
 	if mob_cap == 0:
 		print("Wave ", wavenum, " Has Begun!")
 		stop_spawn = false
@@ -83,21 +83,23 @@ func _on_timer_timeout() -> void:
 			inactivity_counter_count += 1
 			previous_count = len(GameManager.active_mobs)
 			
-		if wavenum < wavecap and len(GameManager.active_mobs) == 0 or inactivity_counter_count == 30:
+		if wavenum < wavecap and len(GameManager.active_mobs) == 0 or wavenum < wavecap and inactivity_counter_count == 30:
 			print("All Mobs Dead!")
 			wavenum+=1
 			GameManager.active_mobs = []
 			wavetimer.start()
 			reset_wave = true
 			
-		elif wavenum > wavecap and len(GameManager.active_mobs) == 0:
+		elif wavenum == wavecap and len(GameManager.active_mobs) == 0 or inactivity_counter_count == 30 and wavenum == wavecap:
 			print("All waves complete!")
+			won()
 	
-	
+	if mob_cap > 5:
+		mob_cap = 5
 	
 	if reset_wave == false:
 		spawntimer.start()	
-
+	
 
 func _on_wave_timer_timeout() -> void:
 	GameManager.count = 5
@@ -116,3 +118,8 @@ func _on_count_timeout() -> void:
 func counter():
 	print(GameManager.count, " Seconds left")
 	GameManager.count -= 1
+
+func won():
+	spawntimer.stop()
+	wavetimer.stop()
+	timer1.stop()

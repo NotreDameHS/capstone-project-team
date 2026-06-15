@@ -38,13 +38,36 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vq5xy")
 
 [node name="AmmoCount" type="Label" parent="MarginContainer/HBoxContainer/AmmoPanel" unique_id=1893795738]
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "AMMO"
 label_settings = ExtResource("1_cfom6")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Control" type="Control" parent="MarginContainer/HBoxContainer" unique_id=474701822]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Wave" type="Panel" parent="MarginContainer/HBoxContainer" unique_id=827161625]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_vq5xy")
+
+[node name="Wave" type="Label" parent="MarginContainer/HBoxContainer/Wave" unique_id=1817710879]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Wave"
+label_settings = ExtResource("1_cfom6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="MarginContainer/HBoxContainer" unique_id=1966458398]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -54,8 +77,10 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ehg4m")
 
 [node name="HealthLabel" type="Label" parent="MarginContainer/HBoxContainer/HealthPanel" unique_id=1837734841]
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "HEALTH"
 label_settings = ExtResource("1_cfom6")
+vertical_alignment = 1

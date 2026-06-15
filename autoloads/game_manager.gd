@@ -6,6 +6,7 @@ var killed_mobs = 0
 var count := 0
 var all_mobs_dead := false
 var currently_spawn := false
+var wavenum := 1
 
 func get_active_mobs():
 	return active_mobs
