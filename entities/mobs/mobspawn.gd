@@ -11,7 +11,12 @@ var probability: Array[int] = [0,0,0,0,1,1,2]
 var num_mobs = len(GameManager.get_active_mobs())
 var wavenum = 1
 var wavecap = 3
-var count = 10 
+var count = 5 
+var stop_spawn = false
+var reset_wave = false
+var inactivity_counter = false
+var inactivity_counter_count = 0
+var previous_count := 0
 
 @onready var spawntimer = $SpawnTimer
 @onready var wavetimer = $WaveTimer
@@ -23,11 +28,14 @@ func _ready() -> void:
 func _on_timer_timeout() -> void:
 	phase = 0
 	count = 10
-
+	
 	if mob_cap == 0:
 		print("Wave ", wavenum, " Has Begun!")
+		stop_spawn = false
+		inactivity_counter = false
+		inactivity_counter_count = 0
 
-	while num_mobs < 5 and phase == 0:
+	while mob_cap < 5 and phase == 0 and stop_spawn == false:
 		var pick = probability.pick_random()
 		print(pick)
 		var random_mob : PackedScene = mob_types[pick]
@@ -35,27 +43,76 @@ func _on_timer_timeout() -> void:
 		add_child(mob_instance)
 		GameManager.set_active_mobs(mob_instance)
 
-		#var viewport_size := Vector2()
+		var tilemap :=  get_tree().current_scene.find_child("World")
+		var randpos := Vector2(0, 0)
 
-		#var random_position := Vector2(0.0, 0.0)
-		#random_position.x = randf_range(0.0, viewport_size.x)
-		#random_position.y = randf_range(0.0, viewport_size.y)
+		var map_rect = tilemap.get_used_rect()
+		var tile_size = tilemap.tile_set.tile_size
 
-		var temp_pos = Vector2(0.0,0.0)
+		var min_x = map_rect.position.x * tile_size.x
+		var max_x = map_rect.end.x * tile_size.x
+		var min_y = map_rect.position.y * tile_size.y
+		var max_y = map_rect.end.y * tile_size.y
 
-		mob_instance.position = temp_pos
+		#var temp_pos = Vector2(0.0,0.0)
+
+		randpos.x = randf_range(min_x, max_x)
+		randpos.y = randf_range(min_y, max_y)
+		
+		mob_instance.position = randpos
+		
+		print("Mob ", mob_cap, " Spawned")
+		#mob_instance.position = temp_pos
 
 		mob_cap += 1
 		phase = 1
+	
+	if mob_cap >= 5 and stop_spawn == false:
+		stop_spawn = true
+		print(mob_cap, stop_spawn)
+		print("Wave spawning compelete")
+		inactivity_counter = true
+		
+	if mob_cap >= 5 and stop_spawn ==true:
+		
+		print(len(GameManager.active_mobs), wavenum)
+		
+		if len(GameManager.active_mobs) > 0 and inactivity_counter == true:
+			if len(GameManager.active_mobs) > previous_count:
+				inactivity_counter_count = 0
+			inactivity_counter_count += 1
+			previous_count = len(GameManager.active_mobs)
+			
+		if wavenum < wavecap and len(GameManager.active_mobs) == 0 or inactivity_counter_count == 30:
+			print("All Mobs Dead!")
+			wavenum+=1
+			GameManager.active_mobs = []
+			wavetimer.start()
+			reset_wave = true
+			
+		elif wavenum > wavecap and len(GameManager.active_mobs) == 0:
+			print("All waves complete!")
+	
+	
+	
+	if reset_wave == false:
+		spawntimer.start()	
 
-	#if mob_cap >= 5:
-		#wavenum += 1
-		#wavetimer.start()
 
+func _on_wave_timer_timeout() -> void:
+	GameManager.count = 5
+	timer1.start()
 
-#func _on_wave_timer_timeout() -> void:
-	#timer1.start()
-	#if wavenum < wavecap :
-		#mob_cap = 0
-		#phase = 0
-		#spawntimer.start()
+func _on_count_timeout() -> void:
+	counter()
+	if GameManager.count > 0:
+		timer1.start()
+	elif GameManager.count <= 0:
+		print("Beginning Next Round")
+		mob_cap = 0
+		reset_wave = false
+		spawntimer.start()
+		
+func counter():
+	print(GameManager.count, " Seconds left")
+	GameManager.count -= 1

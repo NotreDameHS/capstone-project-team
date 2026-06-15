@@ -5,12 +5,12 @@
 
 [node name="Tank Mob" unique_id=1375202296 instance=ExtResource("1_y3ysa")]
 max_health = 200
-speed = 250
+speed = 65
 damage = 20
 
 [node name="Sprite2D" parent="." index="0" unique_id=1804785825]
 position = Vector2(0, 9.536743e-07)
-scale = Vector2(0.21431519, 0.10570434)
+scale = Vector2(0.1, 0.05)
 texture = ExtResource("2_yx6xk")
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1356172137]

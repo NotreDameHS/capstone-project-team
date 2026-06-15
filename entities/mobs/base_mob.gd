@@ -13,8 +13,8 @@ var target: Player = null
 func _ready() -> void:
 	health = max_health
 	add_to_group("mobs")
-	print("Mob layers: ", collision_layer)
-	print("Mob mask: ", collision_mask)
+	#print("Mob layers: ", collision_layer)
+	#print("Mob mask: ", collision_mask)
 #Pathfinding Logic
 func _physics_process(delta: float) -> void:
 	if target == null or not is_instance_valid(target):
@@ -51,7 +51,7 @@ func set_health(new_health: int) -> void:
 #Mob Damage function
 func mob_take_damage(damage: int) -> void:
 	set_health(health - damage)
-	print("Mob at ",health," health")
+	#print("Mob at ",health," health")
 	
 	if health <= 0:
 		GameManager.remove_active_mobs(self)

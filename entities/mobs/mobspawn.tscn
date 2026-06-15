@@ -6,14 +6,16 @@
 script = ExtResource("1_gk0l8")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=308108050]
-wait_time = 3.0
+one_shot = true
 autostart = true
 
 [node name="WaveTimer" type="Timer" parent="." unique_id=2090788422]
-wait_time = 3.0
+wait_time = 5.0
+one_shot = true
 
 [node name="Timer" type="Timer" parent="." unique_id=273949363]
+one_shot = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer1_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_count_timeout"]

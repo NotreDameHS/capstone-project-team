@@ -5,7 +5,7 @@
 
 [node name="Fast Mob" unique_id=1375202296 instance=ExtResource("1_wpuqo")]
 max_health = 50
-speed = 550
+speed = 150
 damage = 5
 
 [node name="Sprite2D" parent="." index="0" unique_id=1804785825]

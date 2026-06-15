@@ -31,7 +31,6 @@ func _on_timer_timeout() -> void:
 	var health_pack := preload("res://entities/collectibles/health_pack.tscn")
 	var health_instance := health_pack.instantiate()
 	add_child(health_instance)
-	
 
 	randpos.x = randf_range(min_x, max_x)
 	randpos.y = randf_range(min_y, max_y)
