@@ -38,10 +38,10 @@ func update_bomb(updated_value):
 		bomb_label.text = str("BOMBS: ", updated_value, " / 1")
 
 func update_wave(updated_value):
-	wave_label.text = str("Wave ",updated_value," / 3")
+	wave_label.text = str("WAVE ",updated_value," / 3")
 	
 func update_kills(updated_value):
-	kill_label.text = str(updated_value, " Kills")
+	kill_label.text = str(updated_value, " KILLS")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
