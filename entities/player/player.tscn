@@ -55,7 +55,7 @@ show_percentage = false
 [node name="ReloadTimer" type="Timer" parent="." unique_id=826246185]
 
 [node name="BombTimer" type="Timer" parent="." unique_id=1873099882]
-wait_time = 5.0
+wait_time = 3.0
 
 [node name="Detction" type="Area2D" parent="." unique_id=1912211214]
 collision_mask = 7

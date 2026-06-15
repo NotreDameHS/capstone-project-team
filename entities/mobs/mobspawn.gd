@@ -22,6 +22,7 @@ var lower = 4
 var upper = 7
 
 @onready var building_layer :=  get_tree().current_scene.find_child("World").get_node("ColliderTile")
+@onready var back_layer :=  get_tree().current_scene.find_child("World").get_node("BackgroundTiles")
 @onready var spawntimer = $SpawnTimer
 @onready var wavetimer = $WaveTimer
 @onready var timer1 = $Timer
@@ -68,7 +69,8 @@ func _on_timer_timeout() -> void:
 			
 			if is_in_building(randpos):
 				print("Mob in building, rerandomizing")
-			else:
+			elif is_in_okspot(randpos):
+				print("acceptable location, mob spawned")
 				valid_position = true
 			
 		mob_instance.position = randpos
@@ -143,3 +145,8 @@ func is_in_building(position: Vector2) -> bool:
 	var map_coords = building_layer.local_to_map(position)
 	var source_id = building_layer.get_cell_source_id(map_coords)
 	return source_id != -1
+	
+func is_in_okspot(position: Vector2) -> bool:
+	var map_coords = back_layer.local_to_map(position)
+	var source_id = back_layer.get_cell_source_id(map_coords)
+	return source_id != 1
