@@ -96,7 +96,7 @@ func _on_timer_timeout() -> void:
 			inactivity_counter_count += 1
 			previous_count = len(GameManager.active_mobs)
 			
-		if wavenum < wavecap and len(GameManager.active_mobs) == 0 or wavenum < wavecap and inactivity_counter_count == 30:
+		if wavenum < wavecap and len(GameManager.active_mobs) == 0 or wavenum < wavecap and inactivity_counter_count == 90:
 			print("All Mobs Dead!")
 			wavenum+=1
 			GameManager.active_mobs = []
@@ -105,7 +105,7 @@ func _on_timer_timeout() -> void:
 			upper += 2
 			reset_wave = true
 			
-		elif wavenum == wavecap and len(GameManager.active_mobs) == 0 or inactivity_counter_count == 30 and wavenum == wavecap:
+		elif wavenum == wavecap and len(GameManager.active_mobs) == 0 or inactivity_counter_count == 90 and wavenum == wavecap:
 			print("All waves complete!")
 			won()
 	
